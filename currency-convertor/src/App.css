@@ -1,0 +1,45 @@
+.currency-card {
+  width: 600px;
+  height: 400px;
+  border: 2px solid black;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.amounts {
+  display: flex;
+  flex-direction: row;
+  margin-top: 100px;
+  justify-content: center;
+}
+
+label {
+  display: block;
+}
+
+input {
+  display: block;
+}
+
+.currency {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.currency-from {
+  padding: 20px 60px;
+  margin-right: 20px;
+}
+
+.currency-to {
+  padding: 20px 60px;
+  margin-left: 20px;
+}
