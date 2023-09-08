@@ -4,15 +4,15 @@ import './App.css'
 import currency_list from './currencyNames'
 
 function App() {
-  const [convertingFromNumber, setConvertingFromNumber] = useState(0);
-  const [convertingToNumber, setConvertingToNumber] = useState(0);
-  const [convertingFromCurrency, setConvertingFromCurrency] = useState("");
-  const [convertingToCurrency, setConvertingToCurrency] = useState("");
+  const [convertingFromNumber, setConvertingFromNumber] = useState(0); // Keeps track of what the convertingFrom value is
+  const [convertingToNumber, setConvertingToNumber] = useState(0); // Keeps track of what the convertingTo value is
+  const [convertingFromCurrency, setConvertingFromCurrency] = useState(""); // Keeps track of what the initial currency value is
+  const [convertingToCurrency, setConvertingToCurrency] = useState(""); // Keeps track of what the converting to currency value is
 
   useEffect(() => {
     const getConversion = async () => {
       console.log(convertingFromCurrency, convertingFromNumber, convertingToCurrency);
-      if (convertingFromNumber !== null && convertingToCurrency !== "" && convertingFromCurrency !== "") {
+      if (convertingFromNumber !== null && convertingToCurrency !== "" && convertingFromCurrency !== "") { // When all 3 are valid values a fetch request is made to grab the data
         try {
           const data = await fetch(`https://api.api-ninjas.com/v1/convertcurrency?want=${convertingToCurrency}&have=${convertingFromCurrency}&amount=${convertingFromNumber}`, {
             method: "GET",
@@ -27,7 +27,7 @@ function App() {
           const json = await data.json();
           console.log(json);
     
-          setConvertingToNumber(json.new_amount);
+          setConvertingToNumber(json.new_amount); // Set convertingToNumber to the new_amount value in the currency object
     
         } catch (error) {
           console.log("Couldn't fetch data", error);
@@ -39,26 +39,26 @@ function App() {
   }, [convertingFromCurrency, convertingToCurrency, convertingFromNumber]);
 
   const handleNum = (e) => { // When you enter a number on amount from, the currency converter api gets called to convert from the first currency to the second
-    if (e.target.value) {
+    if (e.target.value) { // Prevents any issues from the api being called on a null value
       setConvertingFromNumber(e.target.value);
     }
   }
 
-  const handleFrom = (code) => {
+  const handleFrom = (code) => { // Handles changing the value of the convertingFromCurrency
     setConvertingFromCurrency(code);
   }
 
-  const handleTo = (code) => {
+  const handleTo = (code) => { // Handles changing the value of the convertingToCurrency
     setConvertingToCurrency(code);
   }
 
-  const handleSwitch = () => {
+  const handleSwitch = () => { // Switches the values of the convertingFrom and convertingTo currencies
     const copy = convertingFromCurrency;
 
     setConvertingFromCurrency(convertingToCurrency);
     setConvertingToCurrency(copy);
 
-    document.getElementById("convert-from").value = convertingToCurrency;
+    document.getElementById("convert-from").value = convertingToCurrency; // Changes the values that are shown on the dropdown 
     document.getElementById("convert-to").value = convertingFromCurrency;
   }
 
