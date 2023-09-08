@@ -1,5 +1,6 @@
 const currency_list = [ // Retrieved list from https://www.html-code-generator.com/javascript/array/currency-name
-    {name: "Afghan Afghani", code: "AFA"},
+    {name: "", code: ""},
+    {name: "Afghan Afghani", code: "AFN"},
     {name: "Albanian Lek", code: "ALL"},
     {name: "Algerian Dinar", code: "DZD"},
     {name: "Angolan Kwanza", code: "AOA"},
